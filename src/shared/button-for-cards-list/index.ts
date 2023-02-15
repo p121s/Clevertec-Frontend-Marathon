@@ -1,0 +1,1 @@
+export { ButtonForCardsList } from './button-for-cards-list-component';
