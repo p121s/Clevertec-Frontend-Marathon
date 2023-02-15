@@ -10,7 +10,7 @@ import { SortButton } from '../../shared/sort-button';
 import { SearchSortSanelProps } from './search-sort-panel-interfaces';
 import * as S from './search-sort-panel-styled';
 
-export const SearchSortPanel = ({ isLinear, showCardWindow, showCardList }: SearchSortSanelProps) => {
+export const SearchSortPanel = ({ isLinear, showCardWindow, showCardList }: SearchSortSanelProps): JSX.Element => {
   const [isVisibleButtonOpen, setisVisibleButtonOpen] = useState<boolean>(true);
   const [isVisibleSearchInput, setisVisibleSearchInput] = useState<boolean>(false);
   const [isVisibleButtonClose, setisVisibleButtonClose] = useState<boolean>(false);

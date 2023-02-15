@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { books } from '../../mock-data/data/books-data';
 import { getBooksFetch } from '../../store/reducers/all-books';
 import { CardBook } from '../card-book';
 import { CardBookProps } from '../card-book/card-book-interfaces';
@@ -9,15 +8,22 @@ import { SearchSortPanel } from '../search-sort-panel';
 
 import * as S from './all-books-styled';
 
-export const AllBooks = () => {
+export const AllBooks = (): JSX.Element => {
   const allBooks = useSelector((state: any) => state.allBooksReducer.books);
   const menu = useSelector((state: any) => state.allCategoriesReducer.menu);
   const dispatch = useDispatch();
   const [isLinear, setIsLinear] = useState<boolean>(false);  
 
+console.log('main');
+
+
   useEffect(() => {
+
+    console.log('use');
+    
     dispatch(getBooksFetch());
-  }, [dispatch])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const showCardWindow = () => {
     setIsLinear(false);
@@ -31,7 +37,7 @@ export const AllBooks = () => {
     <React.Fragment>
       <SearchSortPanel isLinear={isLinear} showCardWindow={showCardWindow} showCardList={showCardList} />
       <S.WrapperCards isLinear={isLinear}>
-        {books.length && menu[0].submenu !== null
+        {allBooks.length && menu[0].submenu !== null
           ? allBooks.map((book: CardBookProps) => (
               <CardBook
                 key={book.id}

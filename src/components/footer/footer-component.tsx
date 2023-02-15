@@ -5,7 +5,7 @@ import vk from '../../images/svg/vk.svg';
 
 import * as S from './footer-styled';
 
-export const Footer = () => (
+export const Footer = (): JSX.Element => (
     <S.Footer>
         <S.CoryWriteBlock>© 2020-2023 Cleverland. Все права защищены.</S.CoryWriteBlock>
         <S.SocialBlock>

@@ -1,24 +1,3 @@
-// export interface IBook {
-//   id: string;
-//   category: string;
-//   titleCategory: string;
-//   images: string[];
-//   title: string;
-//   author: string;
-//   aboutBook: string;
-//   year: string;
-//   rate: number | 0;
-//   publishingHouse: string;
-//   pages: string;
-//   binding: string;
-//   format: string;
-//   genre: string;
-//   weight: string;
-//   ISBN: string;
-//   manufacturer: string;
-//   reviews: IReview[];
-// }
-
 export interface IBook {
   id: number;
   title: string;
@@ -74,14 +53,6 @@ export interface IHistory {
   userId: number;
 }
 
-// export interface IReview {
-//   avatar: string;
-//   nameUser: string;
-//   date: string;
-//   rate: string;
-//   textReview: string;
-// }
-
 export interface ImageBook {
   url: string;
 }
@@ -93,7 +64,3 @@ export interface ReviewImageProps {
 export interface ArrowReviewsProps {
   isReviewsOpen: boolean;
 }
-
-// export interface SwiperMiniStyledProps {
-//   isVisible: boolean;
-// }

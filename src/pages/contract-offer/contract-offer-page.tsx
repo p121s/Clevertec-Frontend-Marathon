@@ -1,6 +1,6 @@
 import * as S from './contract-offer-styled';
 
-export const ContractOffer = () => (
+export const ContractOffer = (): JSX.Element => (
   <S.WrapperContent>
     <S.Header>Договор оферты</S.Header>
     <S.Paragraph>

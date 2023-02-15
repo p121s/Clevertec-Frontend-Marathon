@@ -17,24 +17,22 @@ import 'react-toastify/dist/ReactToastify.css';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <HashRouter>
-        <Routes>
-          <Route path='/' element={<MainPage />}>
-            <Route index={true} element={<AllBooks />} />
-            <Route path=':category' element={<AllBooks />} />
-            <Route path='Terms of use' element={<TermsOfUse />} />
-            <Route path='Contract offer' element={<ContractOffer />} />
-          </Route>
-          <Route path='/books/:category/:id' element={<BookPage />} />
-          {/* <Route path='/book/:category/:id' element={<BookPage />} /> */}
-          <Route path='/profile' element={<h1>Профиль</h1>} />
-          <Route path='/quit' element={<h1>Выход</h1>} />
-          <Route path='*' element={<span>Error</span>} />
-        </Routes>
-      </HashRouter>
-      <ContainerFroToasts />
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <HashRouter>
+      <Routes>
+        <Route path='/' element={<MainPage />}>
+          <Route index={true} element={<AllBooks />} />
+          <Route path=':category' element={<AllBooks />} />
+          <Route path='Terms of use' element={<TermsOfUse />} />
+          <Route path='Contract offer' element={<ContractOffer />} />
+        </Route>
+        <Route path='/books/:category/:id' element={<BookPage />} />
+        {/* <Route path='/book/:category/:id' element={<BookPage />} /> */}
+        <Route path='/profile' element={<h1>Профиль</h1>} />
+        <Route path='/quit' element={<h1>Выход</h1>} />
+        <Route path='*' element={<span>Error</span>} />
+      </Routes>
+    </HashRouter>
+    <ContainerFroToasts />
+  </Provider>
 );

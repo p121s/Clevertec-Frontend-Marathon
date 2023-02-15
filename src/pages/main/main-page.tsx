@@ -4,12 +4,12 @@ import { Outlet } from 'react-router-dom';
 
 import { Footer } from '../../components/footer';
 import { Header } from '../../components/header';
+import { Menu } from '../../components/menu';
 import { Loader } from '../../shared/loader';
-import { Menu } from '../../shared/menu';
 
 import * as S from './main-page-styled';
 
-export const MainPage = () => {
+export const MainPage = (): JSX.Element => {
   const isLoadingBooks = useSelector((state: any) => state.allBooksReducer.isLoading);
   const isLoadingCategories = useSelector((state: any) => state.allCategoriesReducer.isLoading);
 

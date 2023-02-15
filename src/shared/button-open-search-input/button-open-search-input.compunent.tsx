@@ -4,7 +4,7 @@ import searchImg from '../../images/svg/search.svg';
 import { ButtoOpenProps } from './button-open-search-input.interfaces';
 import * as S from './button-open-search-input.styled';
 
-export const ButtonOpenSearchInput = ({isVisible, onClick}: ButtoOpenProps) => {
+export const ButtonOpenSearchInput = ({isVisible, onClick}: ButtoOpenProps): JSX.Element => {
     const {isMobile} = useResize();
 
     return (

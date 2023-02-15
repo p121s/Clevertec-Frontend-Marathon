@@ -2,7 +2,7 @@ import { useResize } from '../../hooks/use-resize';
 
 import * as S from './user.styled';
 
-export const User = () => {
+export const User = (): JSX.Element => {
   
   const {isTablet} = useResize();
   

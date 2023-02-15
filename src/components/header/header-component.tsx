@@ -7,7 +7,7 @@ import { User } from '../user';
 
 import * as S from './header-styled';
 
-export const Header = () => {
+export const Header = (): JSX.Element => {
   const dispatch = useDispatch();
   const isOpenMenu = useSelector((state: any) => state.openCloseMenuReducer.isMenuOpen)
   const { isTablet } = useResize();

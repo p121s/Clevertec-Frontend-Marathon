@@ -9,7 +9,7 @@ import { closeMenu } from '../../store/reducers/open-close-menu';
 import { MenuItem, SubMenuItem } from './menu-interfaces';
 import * as S from './menu-styled';
 
-export const Menu = () => {
+export const Menu = (): JSX.Element => {
   const location = useLocation();
   const params = useParams();
   const dispatch = useDispatch();

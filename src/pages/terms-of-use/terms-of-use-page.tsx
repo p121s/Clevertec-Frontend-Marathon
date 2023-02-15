@@ -1,6 +1,6 @@
 import * as S from './terms-of-use-styled';
 
-export const TermsOfUse = () => (
+export const TermsOfUse = (): JSX.Element => (
   <S.WrapperContent>
     <S.Header>Правила ползования</S.Header>
     <S.Paragraph>
