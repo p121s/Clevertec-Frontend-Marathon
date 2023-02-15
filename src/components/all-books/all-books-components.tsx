@@ -14,16 +14,9 @@ export const AllBooks = (): JSX.Element => {
   const dispatch = useDispatch();
   const [isLinear, setIsLinear] = useState<boolean>(false);  
 
-console.log('main');
-
-
-  useEffect(() => {
-
-    console.log('use');
-    
+  useEffect(() => {    
     dispatch(getBooksFetch());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch])
 
   const showCardWindow = () => {
     setIsLinear(false);
