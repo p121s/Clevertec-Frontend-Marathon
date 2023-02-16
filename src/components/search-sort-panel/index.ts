@@ -1,0 +1,1 @@
+export { SearchSortPanel } from './search-sort-panel-component';

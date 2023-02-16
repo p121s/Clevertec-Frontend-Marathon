@@ -1,0 +1,1 @@
+export { Rate } from './rating-component';

@@ -1,0 +1,1 @@
+export { ButtonForCardsTiled } from './button-for-cards-tiled-component';

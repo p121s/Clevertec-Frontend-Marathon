@@ -1,0 +1,1 @@
+export { ButtonOpenSearchInput } from './button-open-search-input.compunent';
