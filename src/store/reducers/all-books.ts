@@ -6,18 +6,26 @@ export const allBooks = createSlice({
   initialState: {
     books: [],
     isLoading: false,
+    isLoaded: false,
+    isError: false,
   },
   reducers: {
     getBooksFetch: (state) => {
       state.isLoading = true;
+      state.isLoaded = false;
+      state.isError = false;
     },
     setAllBooks: (state, action) => {
       state.books = action.payload;
       state.isLoading = false;
+      state.isLoaded = true;
+      state.isError = false;
     },
     getBooksFailure: (state) => {
       state.isLoading = false;
-    }
+      state.isLoaded = true;
+      state.isError = true;
+    },
   },
 });
 

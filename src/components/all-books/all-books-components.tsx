@@ -12,11 +12,11 @@ export const AllBooks = (): JSX.Element => {
   const allBooks = useSelector((state: any) => state.allBooksReducer.books);
   const menu = useSelector((state: any) => state.allCategoriesReducer.menu);
   const dispatch = useDispatch();
-  const [isLinear, setIsLinear] = useState<boolean>(false);  
+  const [isLinear, setIsLinear] = useState<boolean>(false);
 
-  useEffect(() => {    
+  useEffect(() => {
     dispatch(getBooksFetch());
-  }, [dispatch])
+  }, [dispatch]);
 
   const showCardWindow = () => {
     setIsLinear(false);

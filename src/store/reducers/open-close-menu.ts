@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
 export const openCloseMenu = createSlice({
@@ -7,11 +8,9 @@ export const openCloseMenu = createSlice({
   },
   reducers: {
     openClose: (state) => {
-      // eslint-disable-next-line no-param-reassign
       state.isMenuOpen = !state.isMenuOpen;
     },
     closeMenu: (state) => {
-      // eslint-disable-next-line no-param-reassign
       state.isMenuOpen = false;
     }
   },

@@ -28,18 +28,26 @@ export const allCategories = createSlice({
       },
     ],
     isLoading: false,
+    isLoaded: false,
+    isError: false,
   },
   reducers: {
     getCategoriesFetch: (state) => {
       state.isLoading = true;
+      state.isLoaded = false;
+      state.isError = false;
     },
     setAllCategories: (state, action) => {
       state.menu[0].submenu = action.payload;
       state.isLoading = false;
+      state.isLoaded = true;
+      state.isError = false;
     },
     getCategoriesFailure: (state) => {
       state.isLoading = false;
-    }
+      state.isLoaded = true;
+      state.isError = true;
+    },
   },
 });
 
