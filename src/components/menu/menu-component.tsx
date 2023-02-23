@@ -21,7 +21,7 @@ export const Menu = (): JSX.Element => {
   const idBurgerTests = ['burger-showcase', 'burger-terms', 'burger-contract'];
   const { isTablet } = useResize();
 
-  const isMainPath = location.pathname.replace(`${params.category}`, '') === '/';  
+  const isMainPath = location.pathname.replace(`${params.category}`, '') === '/';
 
   useEffect(() => {
     dispatch(getCategoriesFetch());
@@ -49,16 +49,33 @@ export const Menu = (): JSX.Element => {
 
           if (submenu) {
             submenuItems = submenu.map((item1: SubMenuItem) => (
-              <S.SubMenuItem
-                key={item1.id}
-                to={`/${item1.path}`}
-                className={(isActive) => (isActive ? 'active' : '')}
-                onClick={handleCloseMenu}
-                data-test-id={i === 0 ? (isTablet ? 'burger-books' : 'navigation-books') : ''}
-              >
-                {item1.name}
-                <S.CountPlace key={`count_${item1.id}`}>12</S.CountPlace>
-              </S.SubMenuItem>
+              <S.WrapperSunMenuItem>
+                <S.SubMenuItem
+                  key={item1.id}
+                  to={item1.path}
+                  className={(isActive) => (isActive ? 'active' : '')}
+                  onClick={handleCloseMenu}
+                  data-test-id={
+                    i === 0
+                      ? isTablet
+                        ? `burger-${item1.path === 'all' ? 'books' : item1.path}`
+                        : `navigation-${item1.path === 'all' ? 'books' : item1.path}`
+                      : ''
+                  }
+                >
+                  {item1.name}
+                </S.SubMenuItem>
+                <S.CountPlace
+                  key={`count_${item1.id}`}
+                  data-test-id={
+                    isTablet ? `burger-book-count-for-${item1.path}` : `navigation-book-count-for-${item1.path}`
+                  }
+                >
+                  {item1.path === 'all'
+                    ? ''
+                    : allBooks?.filter((book: { categories: string[] }) => book.categories.includes(item1.name)).length}
+                </S.CountPlace>
+              </S.WrapperSunMenuItem>
             ));
           }
 
@@ -85,7 +102,7 @@ export const Menu = (): JSX.Element => {
           ) : (
             <S.ManuItem
               key={item.id}
-              to={item.path}
+              to={`/${item.path}`}
               className={(isActive) => (isActive ? 'active' : '')}
               onClick={handlerCloseSubMenu}
               data-test-id={isTablet ? idBurgerTests[i] : idNavigationTests[i]}

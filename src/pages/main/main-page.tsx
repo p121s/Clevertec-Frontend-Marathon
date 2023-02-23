@@ -22,14 +22,14 @@ export const MainPage = (): JSX.Element => {
   useEffect(() => {
     if (isLoadedBooks && isLoadedCategories) {
       if (isErrorBooks || isErrorCategories) {
-        toast.error(<Toast type='error'>Что-то пошло не так. Обновите страницу через некоторое время. lol</Toast>);
+        toast.error(<Toast type='error'>Что-то пошло не так. Обновите страницу через некоторое время.</Toast>);
       }
     }
   }, [isErrorBooks, isErrorCategories, isLoadedBooks, isLoadedCategories]);
 
   return (
     <React.Fragment>
-      {isLoadingBooks && isLoadingCategories ? <Loader /> : ''}
+      {isLoadingBooks || isLoadingCategories ? <Loader /> : ''}
       <Header />
       <S.Main>
         <S.Section>

@@ -8,7 +8,7 @@ export const allCategories = createSlice({
       {
         name: 'Showcase of books',
         id: 1,
-        path: '/',
+        path: '',
         title: 'Витрина книг',
         submenu: null,
       },
@@ -38,7 +38,11 @@ export const allCategories = createSlice({
       state.isError = false;
     },
     setAllCategories: (state, action) => {
-      state.menu[0].submenu = action.payload;
+      const categories = action.payload;
+
+      categories.unshift({name: 'Все книги', path: 'all', id: 0});
+      
+      state.menu[0].submenu = categories;
       state.isLoading = false;
       state.isLoaded = true;
       state.isError = false;

@@ -14,6 +14,7 @@ import noAvatar from '../../images/Ellipse.png';
 import { Button } from '../../shared/button';
 import { Loader } from '../../shared/loader';
 import { Rate } from '../../shared/rating';
+import { getCategoriesFetch } from '../../store/reducers/all-categories';
 import { getOneBookFetch } from '../../store/reducers/one-book';
 
 import { IBook, IComment } from './book-page-interfaces';
@@ -31,6 +32,7 @@ export const BookPage = (): JSX.Element => {
   const dispatch = useDispatch();
   const book: IBook = useSelector((state: any) => state.oneBookReducer.book);
   const isLoadingBook = useSelector((state: any) => state.oneBookReducer.isLoading);
+  const categories = useSelector((state: any) => state.allCategoriesReducer.menu)[0].submenu;
   const [isReviewsOpen, setIsReviewsOpen] = useState<boolean>(false);
   const [dataForInfoTables, setDataForInfoTables] = useState({
     publish: '',
@@ -44,15 +46,19 @@ export const BookPage = (): JSX.Element => {
     producer: '',
   });
   const { isTablet } = useResize();
-  
 
   useEffect(() => {
-    
     dispatch(getOneBookFetch(params));
   }, [dispatch, params]);
 
   useEffect(() => {
-    if(book !== null) {
+    if(!isTablet && !categories) {
+      dispatch(getCategoriesFetch());
+    }
+  }, [categories, dispatch, isTablet]);
+
+  useEffect(() => {
+    if (book !== null) {
       setDataForInfoTables({
         publish: book.publish,
         issueYear: book.issueYear,
@@ -81,18 +87,11 @@ export const BookPage = (): JSX.Element => {
           <S.BackgroundBreadCrumbs>
             <S.BreadCrumbs>
               <S.ContentBreadCrumbs>
-                <S.LinkBreadCrumbs
-                  to='/'
-                  // to={
-                  //   menu[0].submenu
-                  //     ? `/${menu[0].submenu.find((category: any) => category.name === params.category).path}`
-                  //     : '/'
-                  // }
-                >
-                  {params.category}
+                <S.LinkBreadCrumbs to={`/${params.category}`} data-test-id='breadcrumbs-link'>
+                  {categories?.find((category: { path: string | undefined }) => category.path === params.category).name}
                 </S.LinkBreadCrumbs>
                 <S.Slash>/</S.Slash>
-                {`${book?.title || ''}`}
+                <span data-test-id='book-name'>{`${book?.title || ''}`}</span>
               </S.ContentBreadCrumbs>
             </S.BreadCrumbs>
           </S.BackgroundBreadCrumbs>
@@ -100,7 +99,7 @@ export const BookPage = (): JSX.Element => {
             <S.WrapperContent>
               <SwiperBook images={book?.images} />
               <S.BlockTitleAuthorBook>
-                <S.TitleBook>{book?.title}</S.TitleBook>
+                <S.TitleBook data-test-id='book-title'>{book?.title || ''}</S.TitleBook>
                 <S.AuthorBook>{`${book?.authors.join(', ')}, ${book?.issueYear}`}</S.AuthorBook>
               </S.BlockTitleAuthorBook>
               <Button width={isTablet ? 306 : 350} size='large'>

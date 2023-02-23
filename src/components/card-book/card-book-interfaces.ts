@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface CardBookProps {
   authors: string[];
   booking: null;
@@ -8,7 +10,7 @@ export interface CardBookProps {
   image: { url: string };
   issueYear: string;
   rating: number | null;
-  title: string;
+  title: ReactNode | string;
   isLinear: boolean;
 }
 

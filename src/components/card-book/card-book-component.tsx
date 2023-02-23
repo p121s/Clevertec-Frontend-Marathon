@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import noImage from '../../images/bgCat.png';
 import { Button } from '../../shared/button';
 import { Rate } from '../../shared/rating';
@@ -8,17 +10,18 @@ import * as S from './card-book-styles';
 export const CardBook = ({
   id,
   rating,
-  // categories,
   image,
   title,
   authors,
   issueYear,
   isLinear,
-}: CardBookProps): JSX.Element =>
-  isLinear ? (
+}: CardBookProps): JSX.Element => {
+
+const {category} = useParams();
+
+return isLinear ? (
     <div>
-      <S.WrapperCard to={`/books/all/${id}`} isLinear={isLinear}>
-      {/* <S.WrapperCard to={`/book/${categories[0]}/${id}`} isLinear={isLinear}> */}
+      <S.WrapperCard to={`/books/${category}/${id}`} isLinear={isLinear}>
         <div>
           <S.ImgBook isLinear={isLinear} image={image.url === '' ? noImage : `https://strapi.cleverland.by${image.url}`} />
         </div>
@@ -37,12 +40,11 @@ export const CardBook = ({
       </S.WrapperCard>
     </div>
   ) : (
-    <S.WrapperCard to={`/books/all/${id}`} data-test-id='card'>
-      {/* <S.WrapperCard to={`/book/${categories[0]}/${id}`} data-test-id='card'> */}
+    <S.WrapperCard to={`/books/${category}/${id}`} data-test-id='card'>
     <S.ImgBook image={image.url === '' ? noImage : `https://strapi.cleverland.by${image.url}`} />
       <Rate rating={rating || 0} />
       <S.TitleBook>
-        <S.TitleH2>{`${title.slice(0, 40)}...`}</S.TitleH2>
+        <S.TitleH2>{title}</S.TitleH2>
       </S.TitleBook>
       <S.AuthorBook>
         <S.AuthorH2>{`${authors.join(', ')}, ${issueYear}`}</S.AuthorH2>
@@ -50,3 +52,4 @@ export const CardBook = ({
       <Button width={166}>Забронировать</Button>
     </S.WrapperCard>
   );
+};

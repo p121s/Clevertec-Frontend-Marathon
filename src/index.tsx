@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
+
 root.render(
   <Provider store={store}>
     <HashRouter>
@@ -27,7 +28,6 @@ root.render(
           <Route path='Contract offer' element={<ContractOffer />} />
         </Route>
         <Route path='/books/:category/:id' element={<BookPage />} />
-        {/* <Route path='/book/:category/:id' element={<BookPage />} /> */}
         <Route path='/profile' element={<h1>Профиль</h1>} />
         <Route path='/quit' element={<h1>Выход</h1>} />
         <Route path='*' element={<span>Error</span>} />

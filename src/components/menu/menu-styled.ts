@@ -9,7 +9,7 @@ import { MenuStyledProps, SubMenuStyledProps, WrapperNavProps } from './menu-int
 export const WrapperNav = styled.div<WrapperNavProps>`
   @media screen and (max-width: 768px) {
     position: fixed;
-    display: ${props => props.isVisible ? 'block' : 'none'};
+    display: ${(props) => (props.isVisible ? 'block' : 'none')};
     top: 0;
     left: 0;
     width: 100vw;
@@ -73,19 +73,22 @@ export const WrapperArrowSubMenu = styled.div<SubMenuStyledProps>`
   right: 10px;
   width: 24px;
   height: 24px;
-  background: url(${props => props.isActive ? arrowSubMenu : arrowSubMenuNotActive}) center / cover no-repeat;
-  transform: ${props => props.isSubMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+  background: url(${(props) => (props.isActive ? arrowSubMenu : arrowSubMenuNotActive)}) center / cover no-repeat;
+  transform: ${(props) => (props.isSubMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
 `;
 
 export const WrapperSubMenu = styled.div<SubMenuStyledProps>`
-  display: ${props => props.isSubMenuOpen ? 'block' : 'none'};
+  display: ${(props) => (props.isSubMenuOpen ? 'block' : 'none')};
   position: relative;
   top: -35px;
 `;
 
-export const SubMenuItem = styled(NavLink)`
+export const WrapperSunMenuItem = styled.div`
   display: block;
   padding: 8px 8px 8px 24px;
+`;
+
+export const SubMenuItem = styled(NavLink)`
   text-decoration: none;
   font-weight: 400;
   font-size: 16px;
