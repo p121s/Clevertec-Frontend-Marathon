@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter, Route, Routes } from 'react-router-dom';
@@ -9,7 +8,7 @@ import { ContractOffer } from './pages/contract-offer';
 import { MainPage } from './pages/main';
 import { TermsOfUse } from './pages/terms-of-use';
 import { ContainerFroToasts } from './shared/toasts/toasts-container';
-import store from './store/store';
+import { store } from './store/store';
 
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,7 +26,6 @@ root.render(
           <Route path='Contract offer' element={<ContractOffer />} />
         </Route>
         <Route path='/books/:category/:id' element={<BookPage />} />
-        {/* <Route path='/book/:category/:id' element={<BookPage />} /> */}
         <Route path='/profile' element={<h1>Профиль</h1>} />
         <Route path='/quit' element={<h1>Выход</h1>} />
         <Route path='*' element={<span>Error</span>} />

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ButtonOpenStyledProps } from './button-open-search-input.interfaces';
 
 export const ButtonOpenStyled = styled.button<ButtonOpenStyledProps>`
-  display: ${(props) => (props.isMobile ? (props.isVisible ? 'inline-block' : 'none') : 'none')};
+  display: none;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -15,6 +15,7 @@ export const ButtonOpenStyled = styled.button<ButtonOpenStyledProps>`
   margin-right: 16px;
 
   @media screen and (max-width: 350px) {
+    display: ${props => props.isVisible ? 'inline-block' : 'none'};
     width: 32px;
     height: 32px;
   }

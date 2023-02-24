@@ -1,6 +1,11 @@
-import { ReactNode } from 'react';
+export interface AllBooksStore {
+  books: IBook[];
+  isLoading: boolean;
+  isLoaded: boolean;
+  isError: boolean;
+}
 
-export interface CardBookProps {
+export interface IBook {
   authors: string[];
   booking: null;
   categories: string[];
@@ -9,17 +14,12 @@ export interface CardBookProps {
   id: number;
   image: { url: string };
   issueYear: string;
-  rating: number | null;
-  title: ReactNode | string;
+  rating: number;
+  title: string;
   isLinear: boolean;
 }
 
 interface IHistory {
   id: number;
   userId: number;
-}
-
-export interface CardBookStyledProps {
-  image?: string;
-  isLinear?: boolean;
 }

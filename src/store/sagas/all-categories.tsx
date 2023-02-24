@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios, { AxiosResponse } from 'axios';
 
-import { getCategoriesFailure, setAllCategories } from '../reducers/all-categories';
+import { getCategoriesFailure, setAllCategories } from '../reducers/all-categories/all-categories';
 
 function* workerGetAllCategories() {
   try {

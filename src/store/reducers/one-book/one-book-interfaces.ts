@@ -1,3 +1,10 @@
+export interface OneBookStore {
+  book: IBook;
+  isLoading: boolean;
+  isError: boolean;
+  id: number | '';
+}
+
 export interface IBook {
   id: number;
   title: string;
@@ -55,12 +62,4 @@ export interface IHistory {
 
 export interface ImageBook {
   url: string;
-}
-
-export interface ReviewImageProps {
-  image: string;
-}
-
-export interface ArrowReviewsProps {
-  isReviewsOpen: boolean;
 }

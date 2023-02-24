@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import burger from '../../images/svg/burger.svg';
 import closeMenu from '../../images/svg/close-menu.svg';
 
-import { ButtonBurgerStyledProps, LogoLinkStylrdProps } from './header-interfaces';
+import { ButtonBurgerStyledProps } from './header-interfaces';
 
 export const WrapperHeader = styled.header`
   display: flex;
@@ -46,15 +46,23 @@ export const WrappperH1 = styled.div`
 `;
 
 export const BurgerMenu = styled.button<ButtonBurgerStyledProps>`
-  display: ${(props) => (props.isVisible ? 'block' : 'none')};
+  display: none;
   border: none;
   background: none;
   width: 32px;
   height: 32px;
   background: url(${props => props.isOpenMenu ? closeMenu : burger}) center / contain no-repeat;
   z-index: 50;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 `;
 
-export const CleverLandLogoLink = styled(NavLink)<LogoLinkStylrdProps>`
-  display: ${(props) => (props.isVisible ? 'block' : 'none')};
+export const CleverLandLogoLink = styled(NavLink)`
+  display: block;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;

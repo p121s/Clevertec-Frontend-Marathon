@@ -1,21 +1,25 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { AllBooksStore, IBook } from './all-books-interfaces';
+
+const initialState: AllBooksStore = {
+  books: [],
+  isLoading: false,
+  isLoaded: false,
+  isError: false,
+}
 
 export const allBooks = createSlice({
   name: 'books',
-  initialState: {
-    books: [],
-    isLoading: false,
-    isLoaded: false,
-    isError: false,
-  },
+  initialState,
   reducers: {
     getBooksFetch: (state) => {
       state.isLoading = true;
       state.isLoaded = false;
       state.isError = false;
     },
-    setAllBooks: (state, action) => {
+    setAllBooks: (state, action: PayloadAction<IBook[]>) => {
       state.books = action.payload;
       state.isLoading = false;
       state.isLoaded = true;
@@ -30,5 +34,6 @@ export const allBooks = createSlice({
 });
 
 export const { getBooksFetch, setAllBooks, getBooksFailure } = allBooks.actions;
+
 // eslint-disable-next-line import/no-default-export
 export default allBooks.reducer;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FreeMode, Pagination, Thumbs } from 'swiper';
+import { ThumbsEvents } from 'swiper/types';
 
 import { useResize } from '../../hooks/use-resize';
 import noImage from '../../images/bgCat.png';
@@ -9,10 +10,9 @@ import * as S from './swiper-styled';
 
 export const SwiperBook = ({images}: SwiperProps): JSX.Element => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-    const {isTablet} = useResize();
+  const {isTablet} = useResize();
 
-
-  const handleSwiper = (thumbs: any) => {
+  const handleSwiper = (thumbs: ThumbsEvents) => {
     setThumbsSwiper(thumbs);
   };
 

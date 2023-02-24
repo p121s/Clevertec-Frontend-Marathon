@@ -42,8 +42,8 @@ export const Input = styled.input`
     0px 1px 5px rgba(191, 196, 201, 0.24);
   border-radius: 30px;
   border: none;
-  color: red;
-  /* -webkit-text-fill-color: transparent; */
+  color: #363636;
+  caret-color: rgb(248, 54, 0);
 
   &::placeholder {
     font-size: 14px;

@@ -5,20 +5,19 @@ export const WrapperSortButton = styled.div`
 `;
 
 export const SortImg = styled.img`
-  width: 12px;
-  height: 10px;
+  width: 16px;
+  height: 16px;
   position: absolute;
   left: 20px;
-  top: 14px;
+  top: 11px;
 
   @media screen and (max-width: 825px) {
-    left: 14px;
-    top: 14px;
+    left: 17px;
+    top: 11px;
   }
 
   @media screen and (max-width: 350px) {
-    left: 12px;
-    top: 12px;
+    display: none;
   }
 `;
 
@@ -42,6 +41,10 @@ export const Button = styled.button`
     box-shadow: 0px 3px 4px rgba(222, 125, 11, 0.2), 0px 1px 10px rgba(249, 89, 8, 0.2);
   }
 
+  &:active {
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+  }
+
   & span {
     @media screen and (max-width: 680px) {
       display: none;
@@ -56,5 +59,6 @@ export const Button = styled.button`
   @media screen and (max-width: 350px) {
     width: 32px;
     height: 32px;
+    padding: 8px 8px;
   }
 `;
