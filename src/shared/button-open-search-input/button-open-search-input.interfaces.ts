@@ -1,5 +1,4 @@
 export interface ButtonOpenStyledProps {
-  isMobile: boolean;
   isVisible: boolean;
 }
 

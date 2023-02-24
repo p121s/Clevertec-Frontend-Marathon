@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { isTablet } from '../../constants/screen-sizes';
+import { useResize } from '../../hooks/use-resize';
 import { getCategoriesFetch } from '../../store/reducers/all-categories/all-categories';
 import { closeMenu } from '../../store/reducers/open-close-menu/open-close-menu';
 import { useAppSelector } from '../../store/store';
@@ -14,12 +14,13 @@ export const Menu = (): JSX.Element => {
   const location = useLocation();
   const params = useParams();
   const dispatch = useDispatch();
-  const isMenuOpen = useAppSelector(state => state.openCloseMenuReducer.isMenuOpen);
-  const allBooks = useAppSelector(state => state.allBooksReducer.books);
-  const menu = useAppSelector(state => state.allCategoriesReducer.menu);
+  const isMenuOpen = useAppSelector((state) => state.openCloseMenuReducer.isMenuOpen);
+  const allBooks = useAppSelector((state) => state.allBooksReducer.books);
+  const menu = useAppSelector((state) => state.allCategoriesReducer.menu);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(true);
   const idNavigationTests = ['navigation-showcase', 'navigation-terms', 'navigation-contract'];
   const idBurgerTests = ['burger-showcase', 'burger-terms', 'burger-contract'];
+  const { isTablet } = useResize();
 
   const isMainPath = location.pathname.replace(`${params.category}`, '') === '/';
 

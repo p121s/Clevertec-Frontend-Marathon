@@ -1,4 +1,4 @@
-import { isMobile } from '../../constants/screen-sizes';
+import { useResize } from '../../hooks/use-resize';
 import sortDownImg from '../../images/svg/sort-down.svg';
 import sortUpImg from '../../images/svg/sort-up.svg';
 import { useAppSelector } from '../../store/store';
@@ -8,7 +8,8 @@ import * as S from './sort-button-styled';
 
 export const SortButton = ({ onClick }: SortButtonProps): JSX.Element => {
   const isDescendingRanking = useAppSelector(state => state.sortSearchBooksReducer.isDescendingRanking);
-
+  const { isMobile } = useResize();
+ 
   return (
     <S.WrapperSortButton>
       <S.SortImg src={isDescendingRanking ? sortDownImg : sortUpImg} alt='sort' />

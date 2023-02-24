@@ -8,7 +8,7 @@ import { Header } from '../../components/header';
 import { InfoTables } from '../../components/info-tables';
 import { Menu } from '../../components/menu';
 import { SwiperBook } from '../../components/swiper';
-import { isTablet } from '../../constants/screen-sizes';
+import { useResize } from '../../hooks/use-resize';
 import noAvatar from '../../images/Ellipse.png';
 import { Button } from '../../shared/button';
 import { Loader } from '../../shared/loader';
@@ -46,6 +46,7 @@ export const BookPage = (): JSX.Element => {
     ISBN: '',
     producer: '',
   });
+  const {isTablet} = useResize();
 
   useEffect(() => {
     dispatch(getOneBookFetch(params.id));
@@ -55,7 +56,7 @@ export const BookPage = (): JSX.Element => {
     if (!isTablet && !categories) {
       dispatch(getCategoriesFetch());
     }
-  }, [categories, dispatch]);
+  }, [categories, dispatch, isTablet]);
 
   useEffect(() => {
     if (book !== null) {

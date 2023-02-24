@@ -2,13 +2,15 @@ import styled from 'styled-components';
 
 import avatar from '../../images/avatar.png';
 
-import { UserStyledProps } from './user-interfaces';
-
-export const WrapperUser = styled.div<UserStyledProps>`
+export const WrapperUser = styled.div`
   width: 180px;
-  display: ${props => props.isVisible ? 'flex' : 'none'};
+  display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const UserData = styled.div``;
