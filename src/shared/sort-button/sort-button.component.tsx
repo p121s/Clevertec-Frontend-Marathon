@@ -1,15 +1,13 @@
-import { useSelector } from 'react-redux';
-
-import { useResize } from '../../hooks/use-resize';
+import { isMobile } from '../../constants/screen-sizes';
 import sortDownImg from '../../images/svg/sort-down.svg';
 import sortUpImg from '../../images/svg/sort-up.svg';
+import { useAppSelector } from '../../store/store';
 
 import { SortButtonProps } from './sort-button-interfaces';
 import * as S from './sort-button-styled';
 
 export const SortButton = ({ onClick }: SortButtonProps): JSX.Element => {
-  const { isMobile } = useResize();
-  const isDescendingRanking = useSelector((state: any) => state.sortSearchBooksReducer.isDescendingRanking);
+  const isDescendingRanking = useAppSelector(state => state.sortSearchBooksReducer.isDescendingRanking);
 
   return (
     <S.WrapperSortButton>

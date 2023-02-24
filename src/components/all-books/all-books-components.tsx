@@ -1,10 +1,11 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { NotificationBlock } from '../../shared/notification-block';
-import { getBooksFetch } from '../../store/reducers/all-books';
+import { getBooksFetch } from '../../store/reducers/all-books/all-books';
 import { sortAscendingDescending } from '../../store/reducers/sort-search-books';
+import { useAppSelector } from '../../store/store';
 import { CardBook } from '../card-book';
 import { SearchSortPanel } from '../search-sort-panel';
 
@@ -12,18 +13,16 @@ import { BookProps } from './all-books-interfaces';
 import * as S from './all-books-styled';
 
 export const AllBooks = (): JSX.Element => {
-  const allBooks = useSelector((state: any) => state.allBooksReducer.books);
+  const allBooks = useAppSelector((state) => state.allBooksReducer.books);
   const [sortAllBooks, setSortAllBooks] = useState<BookProps[]>([]);
   const [categoryBooks, setCategoryBooks] = useState<BookProps[]>([]);
   const [searchBooks, setSearchBooks] = useState<BookProps[]>([]);
   const params = useParams();
-  const categories = useSelector((state: any) => state.allCategoriesReducer.menu)[0].submenu;
+  const categories = useAppSelector((state) => state.allCategoriesReducer.menu)[0].submenu;
   const dispatch = useDispatch();
   const [isLinear, setIsLinear] = useState<boolean>(false);
-  const isDescendingRanking = useSelector((state: any) => state.sortSearchBooksReducer.isDescendingRanking);
-  const searchText = useSelector((state: any) => state.sortSearchBooksReducer.searchText);
-
-  console.log(searchText, searchBooks);
+  const isDescendingRanking = useAppSelector((state) => state.sortSearchBooksReducer.isDescendingRanking);
+  const searchText = useAppSelector((state) => state.sortSearchBooksReducer.searchText);
 
   useEffect(() => {
     dispatch(getBooksFetch());
@@ -34,9 +33,9 @@ export const AllBooks = (): JSX.Element => {
     let sortArr;
 
     if (isDescendingRanking) {
-      sortArr = newArrAllBooks.sort((a: { rating: number }, b: { rating: number }) => +b.rating - +a.rating);
+      sortArr = newArrAllBooks.sort((a, b) => +b.rating - +a.rating);
     } else {
-      sortArr = newArrAllBooks.sort((a: { rating: number }, b: { rating: number }) => +a.rating - +b.rating);
+      sortArr = newArrAllBooks.sort((a, b) => +a.rating - +b.rating);
     }
 
     setSortAllBooks(sortArr);
@@ -44,13 +43,9 @@ export const AllBooks = (): JSX.Element => {
 
   useEffect(() => {
     if (params.category) {
-      setCategoryBooks(
-        sortAllBooks.filter((book: any) =>
-          book?.categories.includes(
-            categories.find((category: { path: string | undefined }) => category.path === params.category).name
-          )
-        )
-      );
+      const nameCategory = categories?.find((category: { path: string | undefined }) => category.path === params.category)?.name;
+
+      setCategoryBooks(sortAllBooks.filter((book: BookProps) => book?.categories.includes(nameCategory ?? '')));
     } else {
       setCategoryBooks([]);
     }
@@ -66,16 +61,18 @@ export const AllBooks = (): JSX.Element => {
 
   const handlerHighlightingInText = (title: string): ReactNode => {
     const firstPartTitle = title.slice(0, title.toLowerCase().indexOf(searchText.toLowerCase()));
-    const hightlightedPart = title.slice(title.toLowerCase().indexOf(searchText.toLowerCase()), title.toLowerCase().indexOf(searchText.toLowerCase()) + searchText.length);
+    const hightlightedPart = title.slice(
+      title.toLowerCase().indexOf(searchText.toLowerCase()),
+      title.toLowerCase().indexOf(searchText.toLowerCase()) + searchText.length
+    );
     const lastPartTitle = title.slice(title.toLowerCase().indexOf(searchText.toLowerCase()) + searchText.length);
-
-    console.log(title.indexOf(searchText), searchText.length, title.indexOf(searchText) + searchText.length);
-    
 
     return (
       <span>
         {firstPartTitle}
-        <span style={{ color: '#FF5253' }} data-test-id='highlight-matches'>{hightlightedPart}</span>
+        <span style={{ color: '#FF5253' }} data-test-id='highlight-matches'>
+          {hightlightedPart}
+        </span>
         {lastPartTitle}
       </span>
     );

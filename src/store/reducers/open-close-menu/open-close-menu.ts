@@ -1,11 +1,15 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+import { OpenCloseMenuStore } from './open-close-menu-interfaces';
+
+const initialState: OpenCloseMenuStore = {
+  isMenuOpen: false,
+}
+
 export const openCloseMenu = createSlice({
   name: 'handlerOpenCloseMenu',
-  initialState: {
-    isMenuOpen: false,
-  },
+  initialState,
   reducers: {
     openClose: (state) => {
       state.isMenuOpen = !state.isMenuOpen;

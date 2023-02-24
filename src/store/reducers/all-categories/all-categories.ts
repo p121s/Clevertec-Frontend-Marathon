@@ -1,36 +1,40 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+import { AllCategoriesStore } from './all-categories-interfaces';
+
+const initialState: AllCategoriesStore = {
+  menu: [
+    {
+      name: 'Showcase of books',
+      id: 1,
+      path: '',
+      title: 'Витрина книг',
+      submenu: null,
+    },
+    {
+      name: 'Terms of use',
+      id: 2,
+      path: 'Terms of use',
+      title: 'Правила пользования',
+      submenu: null,
+    },
+    {
+      name: 'Contract offer',
+      id: 3,
+      path: 'Contract offer',
+      title: 'Договор оферты',
+      submenu: null,
+    },
+  ],
+  isLoading: false,
+  isLoaded: false,
+  isError: false,
+}
+
 export const allCategories = createSlice({
   name: 'categories',
-  initialState: {
-    menu: [
-      {
-        name: 'Showcase of books',
-        id: 1,
-        path: '',
-        title: 'Витрина книг',
-        submenu: null,
-      },
-      {
-        name: 'Terms of use',
-        id: 2,
-        path: 'Terms of use',
-        title: 'Правила пользования',
-        submenu: null,
-      },
-      {
-        name: 'Contract offer',
-        id: 3,
-        path: 'Contract offer',
-        title: 'Договор оферты',
-        submenu: null,
-      },
-    ],
-    isLoading: false,
-    isLoaded: false,
-    isError: false,
-  },
+  initialState,
   reducers: {
     getCategoriesFetch: (state) => {
       state.isLoading = true;

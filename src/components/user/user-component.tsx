@@ -1,12 +1,8 @@
-import { useResize } from '../../hooks/use-resize';
+import { isTablet } from '../../constants/screen-sizes';
 
 import * as S from './user.styled';
 
-export const User = (): JSX.Element => {
-  
-  const {isTablet} = useResize();
-  
-  return (
+export const User = (): JSX.Element => (
   <S.WrapperUser isVisible={!isTablet}>
     <S.UserData>
       <S.NameUser>Привет, Иван!</S.NameUser>
@@ -14,4 +10,3 @@ export const User = (): JSX.Element => {
     <S.UserAvatar />
   </S.WrapperUser>
 );
-};

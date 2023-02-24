@@ -8,4 +8,9 @@ export const NotificationBlockStyled = styled.div`
   letter-spacing: 0.1px;
   color: #a7a7a7;
   margin: 168px auto;
+
+  @media screen and (max-width: 450px) {
+    font-size: 18px;
+    line-height: 28px;
+  }
 `;

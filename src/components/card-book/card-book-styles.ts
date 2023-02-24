@@ -56,17 +56,21 @@ export const TitleBook = styled.div<CardBookStyledProps>`
         margin-bottom: 8px;
       `
       : `
-    display: table-cell;
-    vertical-align: middle;
     height: 55px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   `}
   color: #363636;
 `;
 
 export const TitleH2 = styled.h2<CardBookStyledProps>`
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: ${(props) => (props.isLinear ? '24px' : '14px')};
   font-weight: ${(props) => (props.isLinear ? '700' : '600')};
-  /* line-height: ${(props) => (props.isLinear ? '30px' : '18px')};  */
   letter-spacing: 0.1px;
 
   @media screen and (max-width: 768px) {
@@ -90,7 +94,6 @@ export const AuthorH2 = styled.h2<CardBookStyledProps>`
   font-size: ${(props) => (props.isLinear ? '16px' : '14px')};
   font-weight: 400;
   margin-bottom: ${(props) => (props.isLinear ? '28px' : '19px')};
-  /* line-height: ${(props) => (props.isLinear ? '24px' : '18px')}; */
   letter-spacing: 0.1px;
 
   @media screen and (max-width: 768px) {

@@ -1,16 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { useResize } from '../../hooks/use-resize';
+import { isTablet } from '../../constants/screen-sizes';
 import logo from '../../images/logo.png';
-import { openClose } from '../../store/reducers/open-close-menu';
+import { openClose } from '../../store/reducers/open-close-menu/open-close-menu';
+import { useAppSelector } from '../../store/store';
 import { User } from '../user';
 
 import * as S from './header-styled';
 
 export const Header = (): JSX.Element => {
   const dispatch = useDispatch();
-  const isOpenMenu = useSelector((state: any) => state.openCloseMenuReducer.isMenuOpen)
-  const { isTablet } = useResize();
+  const isOpenMenu = useAppSelector(state => state.openCloseMenuReducer.isMenuOpen);
 
   const handlerClick = () => {
     dispatch(openClose());

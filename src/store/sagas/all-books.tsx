@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios, { AxiosResponse } from 'axios';
 
-import { getBooksFailure, setAllBooks } from '../reducers/all-books';
+import { getBooksFailure, setAllBooks } from '../reducers/all-books/all-books';
 
 function* workerGetAllBooks() {
   try {
