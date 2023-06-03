@@ -108,7 +108,7 @@ export const SubMenuItem = styled(NavLink)`
     font-weight: 700;
   }
 
-  &.active span {
+  &.active + span {
     background: #363636;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

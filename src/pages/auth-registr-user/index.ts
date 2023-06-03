@@ -1,0 +1,1 @@
+export { AuthRegistrationUser } from './auth-regist-user-component';

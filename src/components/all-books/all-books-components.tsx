@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { NotificationBlock } from '../../shared/notification-block';
 import { getBooksFetch } from '../../store/reducers/all-books/all-books';
-import { sortAscendingDescending } from '../../store/reducers/sort-search-books';
+import { sortAscendingDescending } from '../../store/reducers/sort-search-view-books/sort-search-view-books';
 import { useAppSelector } from '../../store/store';
 import { CardBook } from '../card-book';
 import { SearchSortPanel } from '../search-sort-panel';
@@ -20,9 +20,9 @@ export const AllBooks = (): JSX.Element => {
   const params = useParams();
   const categories = useAppSelector((state) => state.allCategoriesReducer.menu)[0].submenu;
   const dispatch = useDispatch();
-  const [isLinear, setIsLinear] = useState<boolean>(false);
-  const isDescendingRanking = useAppSelector((state) => state.sortSearchBooksReducer.isDescendingRanking);
-  const searchText = useAppSelector((state) => state.sortSearchBooksReducer.searchText);
+  const isDescendingRanking = useAppSelector((state) => state.sortSearchViewBooksReducer.isDescendingRanking);
+  const searchText = useAppSelector((state) => state.sortSearchViewBooksReducer.searchText);
+  const isLinear = useAppSelector((state) => state.sortSearchViewBooksReducer.isLinear);
 
   useEffect(() => {
     dispatch(getBooksFetch());
@@ -43,7 +43,9 @@ export const AllBooks = (): JSX.Element => {
 
   useEffect(() => {
     if (params.category) {
-      const nameCategory = categories?.find((category: { path: string | undefined }) => category.path === params.category)?.name;
+      const nameCategory = categories?.find(
+        (category: { path: string | undefined }) => category.path === params.category
+      )?.name;
 
       setCategoryBooks(sortAllBooks.filter((book: BookProps) => book?.categories.includes(nameCategory ?? '')));
     } else {
@@ -78,26 +80,13 @@ export const AllBooks = (): JSX.Element => {
     );
   };
 
-  const showCardWindow = () => {
-    setIsLinear(false);
-  };
-
-  const showCardList = () => {
-    setIsLinear(true);
-  };
-
   const handlerSort = () => {
     dispatch(sortAscendingDescending());
   };
 
   return (
     <React.Fragment>
-      <SearchSortPanel
-        isLinear={isLinear}
-        showCardWindow={showCardWindow}
-        showCardList={showCardList}
-        handlerSort={handlerSort}
-      />
+      <SearchSortPanel isLinear={isLinear} handlerSort={handlerSort} />
       <S.WrapperCards isLinear={isLinear}>
         {!searchText && (params.category === 'all' || !params.category) ? (
           sortAllBooks.map((book: BookProps) => (

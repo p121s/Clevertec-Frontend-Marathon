@@ -6,12 +6,19 @@ import axios, { AxiosResponse } from 'axios';
 import { Toast } from '../../shared/toasts/toast';
 import { getOneBookFailure, setOneBook } from '../reducers/one-book/one-book';
 
+const token = localStorage.getItem('token');
+
+function fetch(id: number | '') {
+  return axios({
+    method: 'post',
+    url: `https://strapi.cleverland.by/api/books/${id}`,
+    headers: {'Authorization': `Bearer ${token}`}
+  });
+}
+
 function* workerGetOneBook(action: PayloadAction<number | ''>) {
   try {
-    const { data }: AxiosResponse = yield call(
-      axios.get,
-      `https://strapi.cleverland.by/api/books/${action.payload}`
-    );
+    const { data }: AxiosResponse = yield call(() => fetch(action.payload));
 
     yield put(setOneBook(data));
   } catch (e) {

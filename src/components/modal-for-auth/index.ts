@@ -1,0 +1,1 @@
+export { ModalForAuth } from './modal-for-auth-component';

@@ -8,7 +8,7 @@ const initialState: AllCategoriesStore = {
     {
       name: 'Showcase of books',
       id: 1,
-      path: '',
+      path: 'books/all',
       title: 'Витрина книг',
       submenu: null,
     },

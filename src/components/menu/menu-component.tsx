@@ -50,10 +50,10 @@ export const Menu = (): JSX.Element => {
 
           if (submenu) {
             submenuItems = submenu.map((item1: SubMenuItem) => (
-              <S.WrapperSunMenuItem>
+              <S.WrapperSunMenuItem key={`wrapp_submenu_item_${item1.id}`}>
                 <S.SubMenuItem
                   key={item1.id}
-                  to={item1.path}
+                  to={`/books/${item1.path}`}
                   className={(isActive) => (isActive ? 'active' : '')}
                   onClick={handleCloseMenu}
                   data-test-id={
@@ -84,7 +84,7 @@ export const Menu = (): JSX.Element => {
             <React.Fragment key={`frag_${item.id}`}>
               <S.ManuItem
                 key={item.id}
-                to={item.path}
+                to={`/books/${item.path}`}
                 className={isMainPath ? 'active' : ''}
                 onClick={handlerOpenCloseSubMenu}
                 data-test-id={isTablet ? idBurgerTests[i] : idNavigationTests[i]}
@@ -117,7 +117,12 @@ export const Menu = (): JSX.Element => {
           <S.ManuItem to='/profile' className={(isActive) => (isActive ? 'active' : '')} onClick={handlerCloseSubMenu}>
             Профиль
           </S.ManuItem>
-          <S.ManuItem to='/quit' className={(isActive) => (isActive ? 'active' : '')} onClick={handlerCloseSubMenu}>
+          <S.ManuItem
+            to='/quit'
+            className={(isActive) => (isActive ? 'active' : '')}
+            onClick={handlerCloseSubMenu}
+            data-test-id='exit-button'
+          >
             Выход
           </S.ManuItem>
         </S.WrapperUserMinScreen>

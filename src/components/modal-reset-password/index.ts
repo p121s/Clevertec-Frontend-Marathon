@@ -1,0 +1,1 @@
+export { ModalResetPassword } from './modal-reset-password-component';

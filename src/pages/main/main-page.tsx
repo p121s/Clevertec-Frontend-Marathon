@@ -12,12 +12,14 @@ import { useAppSelector } from '../../store/store';
 import * as S from './main-page-styled';
 
 export const MainPage = (): JSX.Element => {
-  const isLoadingBooks = useAppSelector(state => state.allBooksReducer.isLoading);
-  const isLoadingCategories = useAppSelector(state => state.allCategoriesReducer.isLoading);
-  const isLoadedBooks = useAppSelector(state => state.allBooksReducer.isLoaded);
-  const isLoadedCategories = useAppSelector(state => state.allCategoriesReducer.isLoaded);
-  const isErrorBooks = useAppSelector(state => state.allBooksReducer.isError);
-  const isErrorCategories = useAppSelector(state => state.allCategoriesReducer.isError);
+  const isLoadingBooks = useAppSelector((state) => state.allBooksReducer.isLoading);
+  const isLoadingCategories = useAppSelector((state) => state.allCategoriesReducer.isLoading);
+  const isLoadedBooks = useAppSelector((state) => state.allBooksReducer.isLoaded);
+  const isLoadedCategories = useAppSelector((state) => state.allCategoriesReducer.isLoaded);
+  const isErrorBooks = useAppSelector((state) => state.allBooksReducer.isError);
+  const isErrorCategories = useAppSelector((state) => state.allCategoriesReducer.isError);
+
+  
 
   useEffect(() => {
     if (isLoadedBooks && isLoadedCategories) {

@@ -103,10 +103,10 @@ export const BookPage = (): JSX.Element => {
               <S.WrapperContent>
                 <SwiperBook images={book?.images} />
                 <S.BlockTitleAuthorBook>
-                  <S.TitleBook data-test-id='book-title'>{book?.title || ''}</S.TitleBook>
+                  <S.TitleBook data-test-id='book-title'>{book?.title.trim() || ''}</S.TitleBook>
                   <S.AuthorBook>{`${book?.authors.join(', ')}, ${book?.issueYear}`}</S.AuthorBook>
                 </S.BlockTitleAuthorBook>
-                <Button width={isTablet ? 306 : 350} size='large'>
+                <Button typeBtn='primary' width={isTablet ? 306 : 350} size='large'>
                   Забронировать
                 </Button>
                 <S.AboutBook>
@@ -164,7 +164,7 @@ export const BookPage = (): JSX.Element => {
                     ''
                   )}
                 </S.WrapperReviews>
-                <Button width={isTablet ? 'full' : 350} size='large' data-test-id='button-rating'>
+                <Button typeBtn='primary' width={isTablet ? 'full' : 350} size='large' data-test-id='button-rating'>
                   оценить книгу
                 </Button>
               </S.WrapperContent>

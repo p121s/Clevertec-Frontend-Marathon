@@ -66,9 +66,15 @@ export const TitleBook = styled.div<CardBookStyledProps>`
 `;
 
 export const TitleH2 = styled.h2<CardBookStyledProps>`
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  ${(props) =>
+    props.isLinear
+      ? ''
+      : `
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  `}
+
   font-size: ${(props) => (props.isLinear ? '24px' : '14px')};
   font-weight: ${(props) => (props.isLinear ? '700' : '600')};
   letter-spacing: 0.1px;

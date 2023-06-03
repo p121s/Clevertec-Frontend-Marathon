@@ -7,7 +7,7 @@ import { SortButtonProps } from './sort-button-interfaces';
 import * as S from './sort-button-styled';
 
 export const SortButton = ({ onClick }: SortButtonProps): JSX.Element => {
-  const isDescendingRanking = useAppSelector(state => state.sortSearchBooksReducer.isDescendingRanking);
+  const isDescendingRanking = useAppSelector(state => state.sortSearchViewBooksReducer.isDescendingRanking);
   const { isMobile } = useResize();
  
   return (
